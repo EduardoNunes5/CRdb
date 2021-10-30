@@ -23,7 +23,7 @@ public class CommentResponseDTO {
     private LocalDateTime timestamp;
 
     @Lob
-    @Column(nullable = false)
+    @NotNull
     @NotEmpty
     private String message;
 }
