@@ -3,10 +3,7 @@ package com.psoft.crdb.controllers;
 import com.psoft.crdb.dtos.CommentRequestDTO;
 import com.psoft.crdb.dtos.CommentResponseDTO;
 import com.psoft.crdb.services.CommentService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -23,5 +20,10 @@ public class CommentController {
     @PostMapping
     public CommentResponseDTO createComment(@RequestBody @Valid CommentRequestDTO commentRequestDTO){
         return commentService.createComment(commentRequestDTO);
+    }
+    
+    @GetMapping
+    public String ok(){
+        return "OK";
     }
 }
