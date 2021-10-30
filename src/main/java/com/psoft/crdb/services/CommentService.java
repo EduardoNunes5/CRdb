@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class CommentService {
 
     private final CommentMapper commentMapper = CommentMapper.INSTANCE;
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
 
     public CommentResponseDTO createComment(CommentRequestDTO commentRequestDTO){
         Comment toBeSaved = commentMapper.toComment(commentRequestDTO);
