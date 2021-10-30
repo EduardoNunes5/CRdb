@@ -21,9 +21,5 @@ public class CommentController {
     public CommentResponseDTO createComment(@RequestBody @Valid CommentRequestDTO commentRequestDTO){
         return commentService.createComment(commentRequestDTO);
     }
-    
-    @GetMapping
-    public String ok(){
-        return "OK";
-    }
+
 }
