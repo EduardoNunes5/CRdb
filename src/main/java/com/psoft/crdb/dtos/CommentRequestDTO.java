@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +17,7 @@ public class CommentRequestDTO {
     private Long id;
 
     @Lob
-    @Column(nullable = false)
+    @NotNull
     @NotEmpty
     private String message;
 }
