@@ -22,8 +22,10 @@ public class CommentService {
 
     private final CommentMapper commentMapper = CommentMapper.INSTANCE;
     private final CommentRepository commentRepository;
+
     private final SubjectService subjectService;
     private final SubjectMapper subjectMapper = SubjectMapper.INSTANCE;
+
 
     public CommentResponseDTO createComment(CommentRequestDTO commentRequestDTO){
         Comment toBeSaved = commentMapper.toComment(commentRequestDTO);
