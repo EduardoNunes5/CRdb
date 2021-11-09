@@ -20,4 +20,6 @@ public class CommentRequestDTO {
     @NotNull
     @NotEmpty
     private String message;
+
+    private String subject;
 }

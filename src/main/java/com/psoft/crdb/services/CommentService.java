@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -42,5 +44,23 @@ public class CommentService {
         subjectService.save(subject);
 
         return createComment(commentRequestDTO);
+    }
+
+    public CommentResponseDTO updateComment(Long id, CommentRequestDTO commentRequestDTO){
+        Subject subject = subjectService.verifyAndGetIfExists(commentRequestDTO.getSubject());
+        Comment toComment = commentMapper.toComment(commentRequestDTO);
+        Comment foundComment = findByIdAndSubject(id, subject);
+
+        toComment.setSubject(foundComment.getSubject());
+        toComment.setId(foundComment.getId());
+        toComment.setSubject(foundComment.getSubject());
+        toComment.setTimestamp(foundComment.getTimestamp());
+
+        return commentMapper.toCommentResponseDTO(commentRepository.save(toComment));
+    }
+
+    private Comment findByIdAndSubject(Long id, Subject subject){
+        return commentRepository.findByIdAndSubject(id, subject)
+                .orElseThrow(() -> new EntityNotFoundException("Comment not found"));
     }
 }

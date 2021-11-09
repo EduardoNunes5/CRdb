@@ -26,4 +26,10 @@ public class CommentController {
 
     }
 
+    @PatchMapping("comments/{id}")
+    public CommentResponseDTO updateComment(@PathVariable("id") Long id,
+                                            @RequestBody @Valid CommentRequestDTO commentRequestDTO){
+        return this.commentService.updateComment(id, commentRequestDTO);
+    }
+
 }

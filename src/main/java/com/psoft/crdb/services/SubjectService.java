@@ -54,4 +54,9 @@ public class SubjectService {
         }
 
     }
+
+    public Subject verifyAndGetIfExists(String name){
+        return subjectRepository.findSubjectByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("Subject not registered"));
+    }
 }

@@ -24,4 +24,7 @@ public class Comment {
     @Lob
     @Column(nullable = false)
     private String message;
+
+    @ManyToOne
+    private Subject subject;
 }
