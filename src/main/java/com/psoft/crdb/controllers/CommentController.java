@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin
 @RequestMapping("api/")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class CommentController {
@@ -24,6 +23,12 @@ public class CommentController {
                                             @RequestBody @Valid CommentRequestDTO commentRequestDTO){
         return this.commentService.createComment(name, commentRequestDTO);
 
+    }
+
+    @PatchMapping("comments/{id}")
+    public CommentResponseDTO updateComment(@PathVariable("id") Long id,
+                                            @RequestBody @Valid CommentRequestDTO commentRequestDTO){
+        return this.commentService.updateComment(id, commentRequestDTO);
     }
 
 }
