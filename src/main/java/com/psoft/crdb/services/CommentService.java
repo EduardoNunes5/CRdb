@@ -28,22 +28,14 @@ public class CommentService {
     private final SubjectService subjectService;
     private final SubjectMapper subjectMapper = SubjectMapper.INSTANCE;
 
-
-    public CommentResponseDTO createComment(CommentRequestDTO commentRequestDTO){
-        Comment toBeSaved = commentMapper.toComment(commentRequestDTO);
-        toBeSaved.setTimestamp(LocalDateTime.now());
-        Comment saved = this.commentRepository.save(toBeSaved);
-        return commentMapper.toCommentResponseDTO(saved);
-    }
-
     public CommentResponseDTO createComment(String name, CommentRequestDTO commentRequestDTO){
         Subject subject = subjectMapper.toSubject(subjectService.findByName(name));
         Comment comment = commentMapper.toComment(commentRequestDTO);
-
+        comment.setTimestamp(LocalDateTime.now());
         subject.addComment(comment);
         subjectService.save(subject);
 
-        return createComment(commentRequestDTO);
+        return commentMapper.toCommentResponseDTO(comment);
     }
 
     public CommentResponseDTO updateComment(Long id, CommentRequestDTO commentRequestDTO){

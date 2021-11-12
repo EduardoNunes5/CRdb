@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -25,6 +26,6 @@ public class Comment {
     @Column(nullable = false)
     private String message;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Subject subject;
 }
